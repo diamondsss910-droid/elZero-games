@@ -426,3 +426,153 @@ body[dir="rtl"] .games-section,
 body[dir="rtl"] .about-section {
   text-align: right;
 }
+
+/* =========================
+   HEADER THEME BUTTON
+========================= */
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  direction: ltr;
+}
+
+.theme-button {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border: 1px solid #dddddd;
+  border-radius: 50%;
+  background: #f2f2f2;
+  color: #111111;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.theme-button:hover {
+  background: #111111;
+  color: #ffffff;
+  transform: rotate(-12deg);
+}
+
+/* =========================
+   LIGHT MODE
+========================= */
+
+html[data-theme="light"] body {
+  background: #ffffff;
+  color: #111111;
+}
+
+html[data-theme="light"] .navbar,
+html[data-theme="light"] .games-section,
+html[data-theme="light"] .about-section,
+html[data-theme="light"] footer {
+  background-color: #ffffff;
+  color: #111111;
+}
+
+html[data-theme="light"] .game-card {
+  background: #fafafa;
+  border-color: #dddddd;
+}
+
+html[data-theme="light"] .game-info p,
+html[data-theme="light"] .about-section p {
+  color: #777777;
+}
+
+/* =========================
+   DARK MODE
+========================= */
+
+html[data-theme="dark"] body {
+  background: #101010;
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .navbar,
+html[data-theme="dark"] .games-section,
+html[data-theme="dark"] .about-section,
+html[data-theme="dark"] footer {
+  background-color: #101010;
+  color: #ffffff;
+  border-color: #292929;
+}
+
+html[data-theme="dark"] .logo,
+html[data-theme="dark"] .navbar nav a,
+html[data-theme="dark"] .games-section h2,
+html[data-theme="dark"] .about-section h2,
+html[data-theme="dark"] .game-card h3 {
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .hero {
+  background-color: #101010;
+}
+
+html[data-theme="dark"] .hero-description,
+html[data-theme="dark"] .game-card p,
+html[data-theme="dark"] .about-section > p:last-child {
+  color: #bbbbbb;
+}
+
+html[data-theme="dark"] .game-card {
+  background: #181818;
+  border-color: #333333;
+}
+
+html[data-theme="dark"] .coming-soon {
+  color: #ffffff;
+  border-color: #555555;
+}
+
+html[data-theme="dark"] .theme-button {
+  background: #292929;
+  color: #ffffff;
+  border-color: #555555;
+}
+
+html[data-theme="dark"] .language-options {
+  background: #202020;
+  border-color: #444444;
+}
+
+html[data-theme="dark"] .language-options button {
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .language-options button:hover {
+  background: #383838;
+}
+
+html[data-theme="dark"] .eyebrow {
+  color: #aaaaaa;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  .header-left {
+    gap: 12px;
+  }
+
+  .theme-button {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    font-size: 23px;
+  }
+
+  .logo {
+    font-size: 26px;
+  }
+}
