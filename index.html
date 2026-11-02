@@ -11,7 +11,6 @@
 <body>
 
   <header class="navbar">
-
     <div class="header-left">
       <button id="themeButton" class="theme-button" aria-label="Switch theme">
         ☾
@@ -26,30 +25,22 @@
       <a href="#about" data-en="About" data-ar="من نحن">About</a>
     </nav>
 
-<div class="language-menu">
-  <button
-    id="languageButton"
-    class="language-button"
-    aria-expanded="false"
-    aria-controls="languageOptions"
-  >
-    <span>🌐 Languages</span>
-    <span class="language-arrow">⌄</span>
-  </button>
+    <div class="language-menu">
+      <button
+        id="languageButton"
+        class="language-button"
+        aria-expanded="false"
+        aria-controls="languageOptions"
+      >
+        <span>🌐 Languages</span>
+        <span class="language-arrow">⌄</span>
+      </button>
 
-  <div id="languageOptions" class="language-options" hidden>
-    <button type="button" data-language="en">
-      🇺🇸 English
-    </button>
-
-    <button type="button" data-language="ar">
-      🇸🇦 العربية
-    </button>
-  </div>
-</div>
-
+      <div id="languageOptions" class="language-options" hidden>
+        <button type="button" data-language="en">🇺🇸 English</button>
+        <button type="button" data-language="ar">🇸🇦 العربية</button>
+      </div>
     </div>
-
   </header>
 
   <main>
@@ -76,25 +67,56 @@
       </a>
     </section>
 
+    <!-- GAMES SECTION -->
     <section class="games-section" id="games">
-      <p class="eyebrow" data-en="OUR PROJECTS" data-ar="مشاريعنا">
-        OUR PROJECTS
-      </p>
 
-      <h2 data-en="Our Games" data-ar="ألعابنا">Our Games</h2>
+      <div class="games-heading">
+        <p class="eyebrow"
+           data-en="OUR PROJECTS"
+           data-ar="مشاريعنا">
+          OUR PROJECTS
+        </p>
+
+        <h2 data-en="Our Games" data-ar="ألعابنا">
+          Our Games
+        </h2>
+
+        <p class="games-intro"
+           data-en="Discover the worlds we are creating."
+           data-ar="اكتشف العوالم التي نعمل على ابتكارها.">
+          Discover the worlds we are creating.
+        </p>
+      </div>
 
       <div class="games-grid">
-        <article class="game-card">
 
-          <div class="game-art">
+        <!-- SEAK GAME -->
+        <article class="game-card seak-card">
+
+          <div class="game-art seak-art">
             <span class="game-art-label">ELZERO ORIGINAL</span>
-            <div class="game-art-title">SEAK</div>
-            <span class="game-art-subtitle">HUNT OR ESCAPE</span>
+
+            <div class="game-art-center">
+              <div class="game-art-title">SEAK</div>
+              <span class="game-art-subtitle">HUNT OR ESCAPE</span>
+            </div>
+
+            <span class="game-art-number">01</span>
           </div>
 
           <div class="game-info">
+
             <div class="game-info-top">
-              <h3>SEAK GAME</h3>
+              <div>
+                <span class="game-category"
+                      data-en="MULTIPLAYER EXPERIENCE"
+                      data-ar="تجربة جماعية">
+                  MULTIPLAYER EXPERIENCE
+                </span>
+
+                <h3>SEAK GAME</h3>
+              </div>
+
               <span class="coming-soon"
                     data-en="COMING SOON"
                     data-ar="قريبًا">
@@ -102,20 +124,33 @@
               </span>
             </div>
 
-            <p data-en="A new gaming experience is on its way."
-               data-ar="تجربة ألعاب جديدة قادمة قريبًا.">
-              A new gaming experience is on its way.
+            <p class="game-description"
+               data-en="Hunt or escape. A unique multiplayer experience where every move matters."
+               data-ar="طارد أو اهرب. تجربة جماعية فريدة حيث كل حركة تصنع الفرق.">
+              Hunt or escape. A unique multiplayer experience where every move matters.
             </p>
 
-            <span class="discover-label"
-                  data-en="MORE INFORMATION SOON"
-                  data-ar="معلومات أكثر قريبًا">
-              MORE INFORMATION SOON
-            </span>
-          </div>
+            <div class="game-card-footer">
+              <span class="discover-label"
+                    data-en="MORE INFORMATION SOON"
+                    data-ar="معلومات أكثر قريبًا">
+                MORE INFORMATION SOON
+              </span>
 
+              <span class="game-index">01 / 01</span>
+            </div>
+
+          </div>
         </article>
+
       </div>
+
+      <div class="games-bottom-note"
+           data-en="MORE GAMES ARE IN DEVELOPMENT"
+           data-ar="المزيد من الألعاب قيد التطوير">
+        MORE GAMES ARE IN DEVELOPMENT
+      </div>
+
     </section>
 
     <section class="about-section" id="about">
