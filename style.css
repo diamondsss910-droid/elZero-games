@@ -1,4 +1,4 @@
- 
+
 * {
   margin: 0;
   padding: 0;
@@ -13,40 +13,51 @@ body {
   background: #ffffff;
   color: #111111;
   font-family: Arial, sans-serif;
-  line-height: 1.6;
+  line-height: 1.8;
 }
 
+/* NAVBAR */
 .navbar {
   width: 100%;
-  min-height: 80px;
-  padding: 0 8%;
+  min-height: 90px;
+  padding: 20px 7%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
   border-bottom: 1px solid #eeeeee;
 }
 
 .logo {
   color: #111111;
-  font-size: 27px;
+  font-size: 30px;
   font-weight: 900;
   text-decoration: none;
   letter-spacing: -1px;
 }
 
-.logo span {
+.logo span:last-child {
   color: #777777;
+}
+
+.big-z {
+  display: inline-block;
+  font-size: 1.22em;
+  line-height: 0.8;
+  vertical-align: -2px;
 }
 
 .navbar nav {
   display: flex;
-  gap: 30px;
+  align-items: center;
+  gap: 35px;
 }
 
 .navbar nav a {
   color: #333333;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 16px;
   transition: 0.2s;
 }
 
@@ -58,9 +69,9 @@ body {
   background: #111111;
   color: white;
   border: none;
-  padding: 10px 17px;
-  border-radius: 5px;
-  font-size: 13px;
+  padding: 13px 22px;
+  border-radius: 6px;
+  font-size: 15px;
   cursor: pointer;
   transition: 0.2s;
 }
@@ -69,204 +80,214 @@ body {
   background: #444444;
 }
 
+/* HERO */
 .hero {
-  min-height: 480px;
+  min-height: 620px;
   padding: 100px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+  gap: 22px;
 }
 
 .eyebrow {
   color: #888888;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: bold;
   letter-spacing: 3px;
+  line-height: 1.8;
 }
 
 .hero h1 {
-  margin-top: 15px;
-  font-size: clamp(45px, 9vw, 85px);
+  margin-top: 25px;
+  font-size: clamp(48px, 9vw, 86px);
   font-weight: 900;
-  letter-spacing: -4px;
+  letter-spacing: -2px;
+  line-height: 1.25;
+}
+
+.hero h1 .big-z {
+  font-size: 1.18em;
+  vertical-align: -3px;
 }
 
 .hero-description {
-  margin-top: 12px;
+  margin-top: 10px;
   color: #777777;
-  font-size: 16px;
+  font-size: 18px;
+  line-height: 1.9;
+  max-width: 600px;
 }
 
 .main-button {
-  margin-top: 30px;
-  padding: 12px 25px;
+  display: inline-block;
+  margin-top: 25px;
+  padding: 16px 32px;
   background: #111111;
   color: white;
-  border-radius: 5px;
+  border-radius: 6px;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 16px;
   transition: 0.2s;
 }
 
 .main-button:hover {
   background: #444444;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
+/* GAMES */
 .games-section,
 .about-section {
-  padding: 75px 10%;
+  padding: 90px 10%;
   border-top: 1px solid #eeeeee;
 }
 
 .games-section h2,
 .about-section h2 {
-  margin-top: 8px;
-  margin-bottom: 25px;
-  font-size: 32px;
+  margin-top: 15px;
+  margin-bottom: 35px;
+  font-size: 38px;
   letter-spacing: -1px;
+  line-height: 1.4;
 }
 
 .game-card {
-  min-height: 115px;
-  padding: 25px;
+  min-height: 140px;
+  padding: 30px;
   border: 1px solid #dddddd;
-  border-radius: 8px;
+  border-radius: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 15px;
+  gap: 25px;
+  transition: 0.2s;
+}
+
+.game-card:hover {
+  border-color: #999999;
+  transform: translateY(-3px);
 }
 
 .game-card h3 {
-  font-size: 21px;
+  font-size: 23px;
+  line-height: 1.5;
 }
 
 .game-card p,
 .about-section > p:last-child {
   color: #777777;
-  font-size: 14px;
-  margin-top: 5px;
+  font-size: 15px;
+  margin-top: 10px;
+  line-height: 1.9;
 }
 
 .coming-soon {
-  padding: 7px 12px;
+  padding: 9px 14px;
   border: 1px solid #cccccc;
-  border-radius: 4px;
+  border-radius: 5px;
   color: #555555;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: bold;
   letter-spacing: 1px;
   white-space: nowrap;
 }
 
 .about-section {
-  min-height: 250px;
+  min-height: 300px;
 }
 
 .about-section > p:last-child {
-  max-width: 550px;
+  max-width: 650px;
 }
 
+/* FOOTER */
 footer {
-  padding: 25px;
+  padding: 30px 20px;
   text-align: center;
   border-top: 1px solid #eeeeee;
   color: #999999;
-  font-size: 12px;
+  font-size: 13px;
 }
 
+/* RTL */
 body[dir="rtl"] .navbar,
 body[dir="rtl"] .game-card {
   direction: rtl;
 }
 
+/* MOBILE */
 @media (max-width: 600px) {
   .navbar {
-    padding: 15px 5%;
-    flex-wrap: wrap;
-    gap: 15px;
+    padding: 20px 5%;
+    gap: 18px;
+  }
+
+  .logo {
+    font-size: 28px;
   }
 
   .navbar nav {
     order: 3;
     width: 100%;
     justify-content: center;
-    gap: 22px;
+    gap: 28px;
+  }
+
+  .navbar nav a {
+    font-size: 15px;
+  }
+
+  .language-button {
+    padding: 12px 18px;
   }
 
   .hero {
-    min-height: 390px;
-    padding: 70px 15px;
+    min-height: 520px;
+    padding: 75px 20px;
+    gap: 18px;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .hero h1 {
+    font-size: clamp(43px, 11vw, 62px);
+    letter-spacing: -1.5px;
+  }
+
+  .hero-description {
+    font-size: 16px;
+    padding: 0 8px;
+  }
+
+  .main-button {
+    padding: 15px 25px;
   }
 
   .games-section,
   .about-section {
-    padding: 55px 7%;
+    padding: 65px 7%;
+  }
+
+  .games-section h2,
+  .about-section h2 {
+    font-size: 32px;
+    margin-bottom: 28px;
   }
 
   .game-card {
     align-items: flex-start;
     flex-direction: column;
-  }
-}
-/* Better spacing */
-.navbar {
-  padding-top: 18px;
-  padding-bottom: 18px;
-}
-
-.navbar nav {
-  gap: 38px;
-}
-
-.hero {
-  gap: 18px;
-}
-
-.hero h1 {
-  margin-bottom: 8px;
-}
-
-.hero-description {
-  margin-top: 5px;
-  line-height: 1.9;
-}
-
-.games-section h2,
-.about-section h2 {
-  margin-bottom: 32px;
-  line-height: 1.4;
-}
-
-.game-card {
-  padding: 30px;
-  gap: 25px;
-}
-
-.about-section > p:last-child {
-  line-height: 2;
-}
-
-/* Make Z slightly bigger */
-.logo .big-z {
-  font-size: 1.2em;
-  display: inline-block;
-}
-
-/* Mobile spacing */
-@media (max-width: 600px) {
-  .navbar nav {
-    gap: 24px;
-  }
-
-  .hero {
-    gap: 14px;
-  }
-
-  .game-card {
+    padding: 25px;
     gap: 18px;
+  }
+
+  .game-card h3 {
+    font-size: 21px;
   }
 }
