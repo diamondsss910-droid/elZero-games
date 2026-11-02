@@ -212,3 +212,61 @@ body[dir="rtl"] .game-card {
     flex-direction: column;
   }
 }
+/* Better spacing */
+.navbar {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.navbar nav {
+  gap: 38px;
+}
+
+.hero {
+  gap: 18px;
+}
+
+.hero h1 {
+  margin-bottom: 8px;
+}
+
+.hero-description {
+  margin-top: 5px;
+  line-height: 1.9;
+}
+
+.games-section h2,
+.about-section h2 {
+  margin-bottom: 32px;
+  line-height: 1.4;
+}
+
+.game-card {
+  padding: 30px;
+  gap: 25px;
+}
+
+.about-section > p:last-child {
+  line-height: 2;
+}
+
+/* Make Z slightly bigger */
+.logo .big-z {
+  font-size: 1.2em;
+  display: inline-block;
+}
+
+/* Mobile spacing */
+@media (max-width: 600px) {
+  .navbar nav {
+    gap: 24px;
+  }
+
+  .hero {
+    gap: 14px;
+  }
+
+  .game-card {
+    gap: 18px;
+  }
+}
