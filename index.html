@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +9,16 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <header class="navbar">
-    <a href="#" class="logo">el<span class="big-z">Z</span>ero<span>.</span></a>
+
+    <div class="header-left">
+      <button id="themeButton" class="theme-button" aria-label="Switch theme">
+        ☾
+      </button>
+
+      <a href="#" class="logo">el<span class="big-z">Z</span>ero<span>.</span></a>
+    </div>
 
     <nav>
       <a href="#home" data-en="Home" data-ar="الرئيسية">Home</a>
@@ -18,10 +26,27 @@
       <a href="#about" data-en="About" data-ar="من نحن">About</a>
     </nav>
 
-    <button id="languageButton" class="language-button">Languages</button>
+    <div class="language-menu">
+      <button
+        id="languageButton"
+        class="language-button"
+        aria-expanded="false"
+        aria-controls="languageOptions"
+      >
+        <span>🌐 Languages</span>
+        <span class="language-arrow">⌄</span>
+      </button>
+
+      <div id="languageOptions" class="language-options" hidden>
+        <button type="button" data-language="en">🇬🇧 English</button>
+        <button type="button" data-language="ar">🇪🇬 العربية</button>
+      </div>
+    </div>
+
   </header>
 
   <main>
+
     <section class="hero" id="home">
       <p class="eyebrow"
          data-en="INDEPENDENT GAME DEVELOPMENT TEAM"
@@ -45,9 +70,7 @@
     </section>
 
     <section class="games-section" id="games">
-      <p class="eyebrow"
-         data-en="OUR PROJECTS"
-         data-ar="مشاريعنا">
+      <p class="eyebrow" data-en="OUR PROJECTS" data-ar="مشاريعنا">
         OUR PROJECTS
       </p>
 
@@ -55,6 +78,7 @@
 
       <div class="games-grid">
         <article class="game-card">
+
           <div class="game-art">
             <span class="game-art-label">ELZERO ORIGINAL</span>
             <div class="game-art-title">SEAK</div>
@@ -82,19 +106,17 @@
               MORE INFORMATION SOON
             </span>
           </div>
+
         </article>
       </div>
     </section>
 
     <section class="about-section" id="about">
-      <p class="eyebrow"
-         data-en="WHO WE ARE"
-         data-ar="من نحن">
+      <p class="eyebrow" data-en="WHO WE ARE" data-ar="من نحن">
         WHO WE ARE
       </p>
 
-      <h2 data-en="About elZero Team"
-          data-ar="عن elZero Team">
+      <h2 data-en="About elZero Team" data-ar="عن elZero Team">
         About elZero Team
       </h2>
 
@@ -103,6 +125,7 @@
         We are a game development team working on creating original gaming experiences.
       </p>
     </section>
+
   </main>
 
   <footer>© 2026 elZero Team. All rights reserved.</footer>
