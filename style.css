@@ -553,3 +553,254 @@ html[data-theme="dark"] .eyebrow {
     transition-duration: 0.01ms !important;
   }
 }
+/* ================================
+   GAMES SECTION — ELZERO TEAM
+================================ */
+
+.games-section {
+  padding: 110px 7%;
+  position: relative;
+  overflow: hidden;
+}
+
+.games-heading {
+  max-width: 720px;
+  margin: 0 auto 55px;
+  text-align: center;
+}
+
+.games-heading .eyebrow {
+  display: inline-block;
+  color: var(--text-color, #777);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  margin-bottom: 18px;
+}
+
+.games-heading h2 {
+  color: var(--text-color, #111);
+  font-size: clamp(38px, 6vw, 64px);
+  font-weight: 900;
+  letter-spacing: -2px;
+  margin: 0 0 18px;
+}
+
+.games-intro {
+  color: var(--muted-color, #777);
+  font-size: 16px;
+  line-height: 1.8;
+  max-width: 560px;
+  margin: auto;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 850px);
+  justify-content: center;
+  gap: 30px;
+}
+
+.game-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-color, #dedede);
+  background: var(--card-bg, #fff);
+  transition: transform 0.35s ease, border-color 0.35s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--text-color, #111);
+}
+
+.game-art {
+  min-height: 340px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  isolation: isolate;
+}
+
+.seak-art {
+  background:
+    radial-gradient(ellipse at 20% 80%, rgba(0, 100, 255, 0.35), transparent 45%),
+    radial-gradient(ellipse at 80% 20%, rgba(255, 20, 35, 0.35), transparent 45%),
+    #080a10;
+}
+
+.seak-art::before,
+.seak-art::after {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.seak-art::before {
+  background: repeating-linear-gradient(
+    135deg,
+    transparent 0,
+    transparent 45px,
+    rgba(255, 255, 255, 0.045) 46px,
+    transparent 47px
+  );
+  transform: rotate(-8deg);
+}
+
+.seak-art::after {
+  background: radial-gradient(circle, rgba(255,255,255,.14) 1px, transparent 1.5px);
+  background-size: 35px 35px;
+  opacity: 0.35;
+}
+
+.game-art-label {
+  position: absolute;
+  top: 25px;
+  left: 28px;
+  color: rgba(255,255,255,.65);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.game-art-title {
+  color: #fff;
+  font-size: clamp(65px, 12vw, 115px);
+  font-weight: 1000;
+  letter-spacing: 8px;
+  line-height: 1;
+  text-shadow:
+    -4px 0 rgba(0, 100, 255, .8),
+    4px 0 rgba(255, 25, 40, .8);
+}
+
+.game-art-subtitle {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 5px;
+  margin-top: 18px;
+}
+
+.game-index {
+  position: absolute;
+  right: 28px;
+  bottom: 22px;
+  color: rgba(255,255,255,.45);
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.game-info {
+  padding: 30px;
+}
+
+.game-info-top,
+.game-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.game-category {
+  color: var(--muted-color, #777);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.game-status {
+  color: #e33b43;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.game-info h3 {
+  color: var(--text-color, #111);
+  font-size: 30px;
+  font-weight: 900;
+  margin: 22px 0 10px;
+}
+
+.game-description {
+  color: var(--muted-color, #777);
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 600px;
+}
+
+.game-card-footer {
+  border-top: 1px solid var(--border-color, #dedede);
+  margin-top: 28px;
+  padding-top: 20px;
+  color: var(--muted-color, #777);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.games-bottom-note {
+  text-align: center;
+  color: var(--muted-color, #777);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  margin-top: 55px;
+}
+
+/* Arabic layout */
+html[dir="rtl"] .game-art-label {
+  left: auto;
+  right: 28px;
+}
+
+html[dir="rtl"] .game-index {
+  right: auto;
+  left: 28px;
+}
+
+html[dir="rtl"] .game-art-title {
+  letter-spacing: 2px;
+}
+
+/* Mobile */
+@media (max-width: 650px) {
+  .games-section {
+    padding: 75px 5%;
+  }
+
+  .games-heading {
+    margin-bottom: 35px;
+  }
+
+  .game-art {
+    min-height: 260px;
+  }
+
+  .game-info {
+    padding: 22px;
+  }
+
+  .game-info h3 {
+    font-size: 25px;
+  }
+
+  .game-category,
+  .game-status {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .game-card-footer {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+}
