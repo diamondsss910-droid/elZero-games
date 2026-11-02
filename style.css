@@ -804,3 +804,49 @@ html[dir="rtl"] .game-art-title {
     letter-spacing: 1px;
   }
 }
+@media (max-width: 650px) {
+  .game-card {
+    border-radius: 18px;
+    overflow: hidden;
+  }
+
+  .game-art {
+    min-height: 240px;
+    margin: 16px;
+    border-radius: 12px;
+  }
+
+  .game-info {
+    padding: 18px 22px 24px;
+  }
+
+  .game-info-top {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .game-info h3 {
+    margin: 18px 0 10px;
+    font-size: 27px;
+  }
+
+  .game-description {
+    font-size: 15px;
+    line-height: 1.9;
+  }
+
+  .game-card-footer {
+    margin-top: 20px;
+    padding-top: 16px;
+  }
+
+  .game-art-title {
+    font-size: 68px;
+    letter-spacing: 4px;
+  }
+
+  .game-art-subtitle {
+    font-size: 11px;
+    letter-spacing: 3px;
+  }
+}
