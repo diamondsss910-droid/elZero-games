@@ -7,6 +7,124 @@
   <meta name="description" content="Official website of elZero Team">
   <title>elZero Team</title>
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    .vortex-reviews {
+      margin-top: 25px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(128,128,128,0.25);
+    }
+
+    .review-heading {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    .review-summary {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 22px;
+    }
+
+    .review-average {
+      font-size: 38px;
+      font-weight: bold;
+    }
+
+    .review-stars {
+      color: #f5b400;
+      font-size: 23px;
+      letter-spacing: 3px;
+    }
+
+    .review-count {
+      font-size: 13px;
+      opacity: 0.7;
+    }
+
+    .review-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .review-form-title {
+      font-weight: bold;
+    }
+
+    .rating-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .rating-star {
+      border: none;
+      background: transparent;
+      color: #888;
+      font-size: 32px;
+      cursor: pointer;
+      padding: 2px;
+    }
+
+    .rating-star.active {
+      color: #f5b400;
+    }
+
+    .review-input {
+      width: 100%;
+      min-height: 90px;
+      resize: vertical;
+      padding: 12px;
+      border: 1px solid rgba(128,128,128,0.4);
+      border-radius: 10px;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+    }
+
+    .review-submit {
+      border: none;
+      border-radius: 8px;
+      padding: 12px 18px;
+      background: #e63946;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .review-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .review-message {
+      font-size: 13px;
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .review-item {
+      padding: 13px;
+      border: 1px solid rgba(128,128,128,0.2);
+      border-radius: 10px;
+    }
+
+    .review-item-stars {
+      color: #f5b400;
+      margin-bottom: 6px;
+    }
+
+    .review-item-comment {
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+  </style>
 </head>
 
 <body>
@@ -227,6 +345,98 @@
               <span class="game-index">02 / 02</span>
 
             </div>
+
+
+            <!-- DOWNLOAD COUNTER -->
+            <div class="vortex-download-counter">
+              <span data-en="Total Downloads:"
+                    data-ar="إجمالي التحميلات:">
+                Total Downloads:
+              </span>
+
+              <strong id="vortexDownloadCount">...</strong>
+            </div>
+
+
+            <!-- VORTEX REVIEWS -->
+            <section class="vortex-reviews" id="vortexReviews">
+
+              <h3 class="review-heading"
+                  data-en="Player Reviews"
+                  data-ar="تقييمات اللاعبين">
+                Player Reviews
+              </h3>
+
+              <div class="review-summary">
+
+                <strong class="review-average" id="vortexAverage">
+                  0.0
+                </strong>
+
+                <div>
+                  <div class="review-stars" id="vortexAverageStars">
+                    ☆☆☆☆☆
+                  </div>
+
+                  <div class="review-count" id="vortexReviewCount">
+                    0 ratings
+                  </div>
+                </div>
+
+              </div>
+
+
+              <div class="review-form">
+
+                <div class="review-form-title"
+                     data-en="Rate VorTex"
+                     data-ar="قيّم VorTex">
+                  Rate VorTex
+                </div>
+
+                <div class="rating-buttons" id="vortexRatingButtons">
+
+                  <button type="button" class="rating-star" data-rating="1" aria-label="1 star">★</button>
+                  <button type="button" class="rating-star" data-rating="2" aria-label="2 stars">★</button>
+                  <button type="button" class="rating-star" data-rating="3" aria-label="3 stars">★</button>
+                  <button type="button" class="rating-star" data-rating="4" aria-label="4 stars">★</button>
+                  <button type="button" class="rating-star" data-rating="5" aria-label="5 stars">★</button>
+
+                </div>
+
+
+                <textarea
+                  id="vortexReviewComment"
+                  class="review-input"
+                  maxlength="500"
+                  placeholder="Write your review (optional)..."
+                  data-placeholder-en="Write your review (optional)..."
+                  data-placeholder-ar="اكتب رأيك في اللعبة (اختياري)..."
+                ></textarea>
+
+
+                <button
+                  type="button"
+                  class="review-submit"
+                  id="submitVortexReview"
+                  data-en="Submit Review"
+                  data-ar="إرسال التقييم">
+                  Submit Review
+                </button>
+
+                <p class="review-message" id="vortexReviewMessage"></p>
+
+              </div>
+
+
+              <div class="review-list" id="vortexReviewsList">
+                <p data-en="Loading reviews..."
+                   data-ar="جاري تحميل التقييمات...">
+                  Loading reviews...
+                </p>
+              </div>
+
+            </section>
 
           </div>
 
