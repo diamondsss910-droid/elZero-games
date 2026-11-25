@@ -2,7 +2,6 @@
 // SUPABASE SETTINGS
 
 const SUPABASE_URL = "https://smmrbxcturglmfvaotsp.supabase.co";
-
 const SUPABASE_KEY = "sb_publishable_CQ1FLyVp5xN7WneaYg9hqA_zpVEIEhc";
 
 
@@ -26,7 +25,17 @@ function changeLanguage(language) {
         : element.dataset.en;
   });
 
+  const reviewInput = document.getElementById("vortexReviewComment");
+
+  if (reviewInput) {
+    reviewInput.placeholder =
+      language === "ar"
+        ? reviewInput.dataset.placeholderAr
+        : reviewInput.dataset.placeholderEn;
+  }
+
   localStorage.setItem("elzero-language", language);
+
   languageOptions.hidden = true;
   languageButton.setAttribute("aria-expanded", "false");
 }
@@ -39,6 +48,7 @@ languageButton.addEventListener("click", event => {
 
   const isOpen = !languageOptions.hidden;
   languageOptions.hidden = isOpen;
+
   languageButton.setAttribute("aria-expanded", String(!isOpen));
 });
 
@@ -94,42 +104,7 @@ themeButton.addEventListener("click", () => {
 
 // VORTEX DOWNLOAD COUNTER
 
-const vortexCard = document.querySelector(".vortex-card");
-
-let vortexCountElement = null;
-
-
-// Create counter on the website
-
-if (vortexCard) {
-  const gameInfo = vortexCard.querySelector(".game-info");
-  const gameFooter = vortexCard.querySelector(".game-card-footer");
-
-  if (gameInfo && gameFooter) {
-    const counter = document.createElement("div");
-
-    counter.className = "vortex-download-counter";
-
-    counter.style.display = "flex";
-    counter.style.alignItems = "center";
-    counter.style.gap = "8px";
-    counter.style.margin = "15px 0";
-    counter.style.fontSize = "15px";
-
-    const label = document.createElement("span");
-    label.dataset.en = "Total Downloads:";
-    label.dataset.ar = "إجمالي التحميلات:";
-
-    vortexCountElement = document.createElement("strong");
-    vortexCountElement.id = "vortexDownloadCount";
-    vortexCountElement.textContent = "...";
-
-    counter.appendChild(label);
-    counter.appendChild(vortexCountElement);
-
-    gameInfo.insertBefore(counter, gameFooter);
-  }
-}
+const vortexCountElement = document.getElementById("vortexDownloadCount");
 
 
 // Get current download count
@@ -180,7 +155,8 @@ async function countVortexDownload() {
           "Authorization": `Bearer ${SUPABASE_KEY}`,
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({})
+        body: JSON.stringify({}),
+        keepalive: true
       }
     );
 
@@ -214,17 +190,266 @@ if (vortexDownloadButton) {
 }
 
 
-// Restore saved language
+// VORTEX REVIEWS SYSTEM
+
+let selectedVortexRating = 0;
+
+const ratingButtons = document.querySelectorAll(".rating-star");
+const reviewInput = document.getElementById("vortexReviewComment");
+const submitReviewButton = document.getElementById("submitVortexReview");
+
+const averageElement = document.getElementById("vortexAverage");
+const averageStarsElement = document.getElementById("vortexAverageStars");
+const reviewCountElement = document.getElementById("vortexReviewCount");
+const reviewsList = document.getElementById("vortexReviewsList");
+const reviewMessage = document.getElementById("vortexReviewMessage");
+
+
+// Display selected stars
+
+function updateSelectedStars() {
+  ratingButtons.forEach(button => {
+    const rating = Number(button.dataset.rating);
+
+    button.classList.toggle(
+      "active",
+      rating <= selectedVortexRating
+    );
+
+    button.setAttribute(
+      "aria-pressed",
+      String(rating <= selectedVortexRating)
+    );
+  });
+}
+
+
+// Select a rating
+
+ratingButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    selectedVortexRating = Number(button.dataset.rating);
+    updateSelectedStars();
+  });
+});
+
+
+// Display average stars
+
+function createStars(rating) {
+  const roundedRating = Math.round(rating);
+
+  return "★".repeat(roundedRating) +
+         "☆".repeat(5 - roundedRating);
+}
+
+
+// Load reviews and calculate average
+
+async function loadVortexReviews() {
+  try {
+    // Get all ratings for an accurate average
+
+    const averageResponse = await fetch(
+      `${SUPABASE_URL}/rest/v1/vortex_reviews?select=rating`,
+      {
+        headers: {
+          "apikey": SUPABASE_KEY,
+          "Authorization": `Bearer ${SUPABASE_KEY}`
+        }
+      }
+    );
+
+    if (!averageResponse.ok) {
+      throw new Error("Could not load rating summary");
+    }
+
+    const allRatings = await averageResponse.json();
+
+    const totalRatings = allRatings.length;
+
+    const average =
+      totalRatings > 0
+        ? allRatings.reduce((sum, item) => sum + item.rating, 0) / totalRatings
+        : 0;
+
+    if (averageElement) {
+      averageElement.textContent = average.toFixed(1);
+    }
+
+    if (averageStarsElement) {
+      averageStarsElement.textContent = createStars(average);
+    }
+
+    if (reviewCountElement) {
+      const language = document.documentElement.lang;
+
+      reviewCountElement.textContent =
+        language === "ar"
+          ? `${totalRatings} تقييم`
+          : `${totalRatings} ratings`;
+    }
+
+
+    // Get latest 20 reviews
+
+    const reviewsResponse = await fetch(
+      `${SUPABASE_URL}/rest/v1/vortex_reviews?select=rating,comment,created_at&order=created_at.desc&limit=20`,
+      {
+        headers: {
+          "apikey": SUPABASE_KEY,
+          "Authorization": `Bearer ${SUPABASE_KEY}`
+        }
+      }
+    );
+
+    if (!reviewsResponse.ok) {
+      throw new Error("Could not load reviews");
+    }
+
+    const reviews = await reviewsResponse.json();
+
+    if (!reviewsList) return;
+
+    reviewsList.replaceChildren();
+
+    if (reviews.length === 0) {
+      const emptyMessage = document.createElement("p");
+
+      emptyMessage.textContent =
+        document.documentElement.lang === "ar"
+          ? "لا توجد تقييمات حتى الآن. كن أول من يقيّم اللعبة!"
+          : "No reviews yet. Be the first to review!";
+
+      reviewsList.appendChild(emptyMessage);
+      return;
+    }
+
+
+    // Display reviews safely
+
+    reviews.forEach(review => {
+      const item = document.createElement("div");
+      item.className = "review-item";
+
+      const stars = document.createElement("div");
+      stars.className = "review-item-stars";
+      stars.textContent = createStars(review.rating);
+
+      item.appendChild(stars);
+
+      if (review.comment) {
+        const comment = document.createElement("p");
+        comment.className = "review-item-comment";
+
+        // textContent prevents HTML from being executed
+        comment.textContent = review.comment;
+
+        item.appendChild(comment);
+      }
+
+      reviewsList.appendChild(item);
+    });
+
+  } catch (error) {
+    console.error("Reviews error:", error);
+
+    if (reviewsList) {
+      reviewsList.textContent =
+        document.documentElement.lang === "ar"
+          ? "تعذر تحميل التقييمات."
+          : "Could not load reviews.";
+    }
+  }
+}
+
+
+// Submit a review
+
+if (submitReviewButton) {
+  submitReviewButton.addEventListener("click", async () => {
+
+    if (selectedVortexRating === 0) {
+      reviewMessage.textContent =
+        document.documentElement.lang === "ar"
+          ? "اختار عدد النجوم أولاً."
+          : "Please select a star rating first.";
+
+      return;
+    }
+
+    const comment = reviewInput.value.trim();
+
+    submitReviewButton.disabled = true;
+
+    reviewMessage.textContent =
+      document.documentElement.lang === "ar"
+        ? "جاري إرسال تقييمك..."
+        : "Submitting your review...";
+
+    try {
+      const response = await fetch(
+        `${SUPABASE_URL}/rest/v1/vortex_reviews`,
+        {
+          method: "POST",
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json",
+            "Prefer": "return=minimal"
+          },
+          body: JSON.stringify({
+            rating: selectedVortexRating,
+            comment: comment || null
+          })
+        }
+      );
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText);
+      }
+
+      reviewMessage.textContent =
+        document.documentElement.lang === "ar"
+          ? "تم إرسال تقييمك بنجاح! شكراً لك."
+          : "Your review was submitted successfully. Thank you!";
+
+      selectedVortexRating = 0;
+      updateSelectedStars();
+
+      reviewInput.value = "";
+
+      await loadVortexReviews();
+
+    } catch (error) {
+      console.error("Submit review error:", error);
+
+      reviewMessage.textContent =
+        document.documentElement.lang === "ar"
+          ? "حصل خطأ أثناء إرسال التقييم. حاول مرة أخرى."
+          : "Could not submit your review. Please try again.";
+
+    } finally {
+      submitReviewButton.disabled = false;
+    }
+  });
+}
+
+
+// RESTORE LANGUAGE
 
 const savedLanguage = localStorage.getItem("elzero-language") || "en";
 changeLanguage(savedLanguage);
 
 
-// Load counter when website opens
+// LOAD DATA
 
 loadVortexDownloads();
+loadVortexReviews();
 
 
-// Refresh counter every 15 seconds
+// Refresh data every 30 seconds
 
 setInterval(loadVortexDownloads, 15000);
+setInterval(loadVortexReviews, 30000);
